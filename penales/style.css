@@ -1,0 +1,135 @@
+/* Cancha */
+#cancha {
+  position: relative;
+  background-color: green;
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  border: 4px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Arco */
+#arco-img {
+  position: absolute;
+  top: 0;
+  left: 180px;
+  width: 240px;
+  z-index: 0;
+}
+
+/* Messi dibujado */
+#messi {
+  position: absolute;
+  bottom: 20px;
+  left: 270px;
+  width: 40px;
+  height: 80px;
+  background-color: skyblue;
+  border-radius: 10px;
+  box-shadow: 0 -5px 0 #222; /* barba */
+  z-index: 2;
+}
+
+/* Dibu dibujado */
+#dibu {
+  position: absolute;
+  top: 10px;
+  left: 270px;
+  width: 50px;
+  height: 80px;
+  background-color: limegreen;
+  border-radius: 10px;
+  z-index: 3;
+  transition: all 0.6s ease;
+}
+
+#dibu::before, #dibu::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 10px;
+  background-color: limegreen;
+}
+
+#dibu::before {
+  left: -20px;
+  transform: rotate(-20deg);
+}
+
+#dibu::after {
+  right: -20px;
+  transform: rotate(20deg);
+}
+
+/* Pelota */
+#pelota {
+  position: absolute;
+  bottom: 20px;
+  left: 290px;
+  width: 30px;
+  transition: transform 0.7s ease;
+  z-index: 1;
+}
+
+/* Resultado */
+#resultado {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* Animación tiro Dibu a la derecha */
+.tiro-dibu-derecha {
+  transform: translateX(70px) translateY(10px);
+}
+
+/* Animación tiro Dibu a la izquierda */
+.tiro-dibu-izquierda {
+  transform: translateX(-70px) translateY(10px);
+}
+
+body {background-color: skyblue;}
+
+#cancha {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  margin-top: 20px;
+}
+
+#arco-img {
+  width: 100%;
+  height: auto;
+}
+
+#pelota {
+  position: absolute;
+  width: 30px;
+  top: 220px;
+  left: 285px; /* posición inicial centrada */
+  transition: all 0.8s ease;
+}
+
+.arquero-css {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  top: 120px;
+  left: 270px; /* posición inicial centrada */
+  background-color: green;
+  transition: all 0.8s ease;
+}
+
+.jugador-css {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  bottom: 0;
+  left: 275px;
+  background-color: blue;
+}

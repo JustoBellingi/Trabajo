@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Penales con Jugadores Reales</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>⚽ Penales con Jugadores Reales</h1>
+  
+  <div class="selector">
+    <label for="direccion">Dirección del tiro:</label>
+<select id="direccion">
+  <option value="izquierda">Izquierda</option>
+  <option value="centro">Centro</option>
+  <option value="derecha">Derecha</option>
+</select>
+    <label for="jugador">Elegí un jugador:</label>
+    <select id="jugador">
+      <option value="messi">Lionel Messi</option>
+    </select>
+    <button onclick="patearPenal()">Patear</button>
+  </div>
+
+  <div id="cancha">
+    <img id="arco-img" src="arco.jpg" alt="Arco" />
+    <div id="messi" class="jugador-css"></div>
+    <div id="dibu" class="arquero-css"></div>
+    <img id="pelota" src="pelota.png" alt="Pelota" />
+  </div>
+
+  <div id="resultado"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #ffffff;
+    color: #111;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.contenedor {
+    text-align: center;
+    margin-top: 20vh;
+}
+
+.toggle-boton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    background-color: #eeeeee;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.toggle-boton:hover {
+    background-color: #cccccc;
+}
+
+/* Modo oscuro */
+body.dark {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+body.dark .toggle-boton {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+body.dark .toggle-boton:hover {
+    background-color: #555555;
+}
+
+h1 {color:black;}
+/* linea bordada */
+.linea-corte {
+    border-top: 2px dashed black;
+    margin: 20px 0;
+} 
+
+
+.logo-js {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* para hacerlo circular */
+    object-fit: cover;
+    /* ajusta dentro del círculo */
+    background-color: white;
+    /* por si el logo no tiene fondo */
+}
+
+.menu {
+    list-style: none;
+    /* saca los puntos de la lista */
+    display: flex;
+    /* los pone uno al lado del otro */
+    gap: 20px;
+    /* espacio entre ellos */
+    padding: 1;
+    /* saca el padding por defecto */
+    margin: 10;
+    /* saca el margen por defecto */
+}
+
+ footer {
+     background-color: #f2f2f2;
+     text-align: center;
+     padding: 10px;
+ }

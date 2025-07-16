@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnicería "El Asador" - Buenos Aires 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .location {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .location h2 {
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefits {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits h2 {
+            color: #8B0000;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .benefits-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #8B0000;
+        }
+
+        .benefit-card h3 {
+            color: #8B0000;
+            margin-bottom: 1rem;
+        }
+
+        .menu {
+            background-color: #f8f9fa;
+            padding: 3rem 2rem;
+        }
+
+        .menu h2 {
+            color: #8B0000;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .menu-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-category {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-category h3 {
+            color: #8B0000;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #8B0000;
+            padding-bottom: 0.5rem;
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #8B0000;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Chat Bot Styles */
+        .chat-bot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 350px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            background: #f0f0f0;
+            margin-right: auto;
+        }
+
+        .user-message {
+            background: #8B0000;
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #8B0000;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+        }
+
+        .product-selector {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .total-price {
+            font-weight: bold;
+            color: #8B0000;
+            border-top: 2px solid #8B0000;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-bot {
+                width: 90vw;
+                height: 70vh;
+                right: 5vw;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🥩 Carnicería "El Asador" 🥩</h1>
+        <p>Calidad y tradición desde 1985</p>
+    </header>
+
+    <section class="location">
+        <h2>📍 Nuestra Ubicación</h2>
+        <p><strong>Av. Corrientes 1234, Palermo, Buenos Aires</strong></p>
+        <p>📞 Tel: (011) 4832-5678 | 📧 info@elasador.com.ar</p>
+        <p>🕒 Horarios: Lunes a Sábado 8:00 - 20:00 | Domingos 9:00 - 18:00</p>
+    </section>
+
+    <section class="benefits">
+        <h2>¿Por qué elegir la carne de calidad?</h2>
+        <div class="benefits-content">
+            <div class="benefit-card">
+                <h3>💪 Proteínas de Alta Calidad</h3>
+                <p>La carne es una excelente fuente de proteínas completas que contienen todos los aminoácidos esenciales que nuestro cuerpo necesita para construir y reparar tejidos musculares.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>🔴 Hierro Hemo</h3>
+                <p>El hierro presente en la carne es de fácil absorción y es fundamental para prevenir la anemia y mantener una buena oxigenación de la sangre.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>🧠 Vitaminas B12 y B6</h3>
+                <p>Estas vitaminas son esenciales para el funcionamiento del sistema nervioso, la producción de glóbulos rojos y el metabolismo energético.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>💎 Zinc y Selenio</h3>
+                <p>Minerales importantes para el sistema inmunológico, la cicatrización de heridas y la protección antioxidante del organismo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu">
+        <h2>📋 Nuestra Carta de Productos</h2>
+        <div class="menu-grid">
+            <div class="product-category">
+                <h3>🥩 Cortes Vacunos</h3>
+                <div class="product-item">
+                    <span class="product-name">Bife de Chorizo</span>
+                    <span class="product-price">$8,500/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Ojo de Bife</span>
+                    <span class="product-price">$7,800/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Tira de Asado</span>
+                    <span class="product-price">$6,200/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Vacío</span>
+                    <span class="product-price">$9,100/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Cuadril</span>
+                    <span class="product-price">$7,300/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Lomo</span>
+                    <span class="product-price">$10,200/kg</span>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3>🐷 Cortes Porcinos</h3>
+                <div class="product-item">
+                    <span class="product-name">Bondiola</span>
+                    <span class="product-price">$4,800/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Panceta</span>
+                    <span class="product-price">$3,900/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Costilla</span>
+                    <span class="product-price">$3,200/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Lomo</span>
+                    <span class="product-price">$5,500/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Pernil</span>
+                    <span class="product-price">$4,200/kg</span>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3>🐔 Aves</h3>
+                <div class="product-item">
+                    <span class="product-name">Pollo Entero</span>
+                    <span class="product-price">$2,800/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Pechuga de Pollo</span>
+                    <span class="product-price">$3,500/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Muslo de Pollo</span>
+                    <span class="product-price">$2,900/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Pavo Entero</span>
+                    <span class="product-price">$4,200/kg</span>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3>🥓 Embutidos</h3>
+                <div class="product-item">
+                    <span class="product-name">Salchicha Parrillera</span>
+                    <span class="product-price">$2,100/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Chorizo Criollo</span>
+                    <span class="product-price">$2,800/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Morcilla</span>
+                    <span class="product-price">$2,500/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Jamón Cocido</span>
+                    <span class="product-price">$3,800/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Salamín</span>
+                    <span class="product-price">$4,500/kg</span>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3>🍖 Preparados</h3>
+                <div class="product-item">
+                    <span class="product-name">Hamburguesas (6u)</span>
+                    <span class="product-price">$3,200</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Albóndigas (12u)</span>
+                    <span class="product-price">$2,800</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Milanesas de Ternera</span>
+                    <span class="product-price">$4,500/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Carne Picada Especial</span>
+                    <span class="product-price">$3,800/kg</span>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3>🥩 Cortes Premium</h3>
+                <div class="product-item">
+                    <span class="product-name">Bife Ancho</span>
+                    <span class="product-price">$12,500/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Tomahawk</span>
+                    <span class="product-price">$18,000/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">Rib Eye</span>
+                    <span class="product-price">$15,800/kg</span>
+                </div>
+                <div class="product-item">
+                    <span class="product-name">T-Bone</span>
+                    <span class="product-price">$14,200/kg</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Carnicería "El Asador" - Todos los derechos reservados</p>
+        <p>🏆 Certificados de calidad y trazabilidad garantizada</p>
+    </footer>
+
+    <!-- Chat Bot -->
+    <button class="chat-toggle" onclick="toggleChat()">💬</button>
+    
+    <div class="chat-bot" id="chatBot">
+        <div class="chat-header">
+            🥩 Asistente Virtual - El Asador
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be added here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        // Productos disponibles
+        const productos = {
+            'Bife de Chorizo': { precio: 8500, categoria: 'Vacuno' },
+            'Ojo de Bife': { precio: 7800, categoria: 'Vacuno' },
+            'Tira de Asado': { precio: 6200, categoria: 'Vacuno' },
+            'Vacío': { precio: 9100, categoria: 'Vacuno' },
+            'Cuadril': { precio: 7300, categoria: 'Vacuno' },
+            'Lomo': { precio: 10200, categoria: 'Vacuno' },
+            'Bondiola': { precio: 4800, categoria: 'Porcino' },
+            'Panceta': { precio: 3900, categoria: 'Porcino' },
+            'Costilla': { precio: 3200, categoria: 'Porcino' },
+            'Lomo Porcino': { precio: 5500, categoria: 'Porcino' },
+            'Pernil': { precio: 4200, categoria: 'Porcino' },
+            'Pollo Entero': { precio: 2800, categoria: 'Aves' },
+            'Pechuga de Pollo': { precio: 3500, categoria: 'Aves' },
+            'Muslo de Pollo': { precio: 2900, categoria: 'Aves' },
+            'Pavo Entero': { precio: 4200, categoria: 'Aves' },
+            'Salchicha Parrillera': { precio: 2100, categoria: 'Embutidos' },
+            'Chorizo Criollo': { precio: 2800, categoria: 'Embutidos' },
+            'Morcilla': { precio: 2500, categoria: 'Embutidos' },
+            'Jamón Cocido': { precio: 3800, categoria: 'Embutidos' },
+            'Salamín': { precio: 4500, categoria: 'Embutidos' },
+            'Hamburguesas (6u)': { precio: 3200, categoria: 'Preparados' },
+            'Albóndigas (12u)': { precio: 2800, categoria: 'Preparados' },
+            'Milanesas de Ternera': { precio: 4500, categoria: 'Preparados' },
+            'Carne Picada Especial': { precio: 3800, categoria: 'Preparados' },
+            'Bife Ancho': { precio: 12500, categoria: 'Premium' },
+            'Tomahawk': { precio: 18000, categoria: 'Premium' },
+            'Rib Eye': { precio: 15800, categoria: 'Premium' },
+            'T-Bone': { precio: 14200, categoria: 'Premium' }
+        };
+
+        let carrito = [];
+        let estadoConversacion = 'inicio';
+        let clienteInfo = {};
+
+        function toggleChat() {
+            const chatBot = document.getElementById('chatBot');
+            if (chatBot.style.display === 'flex') {
+                chatBot.style.display = 'none';
+            } else {
+                chatBot.style.display = 'flex';
+                if (estadoConversacion === 'inicio') {
+                    iniciarConversacion();
+                }
+            }
+        }
+
+        function iniciarConversacion() {
+            addBotMessage("¡Hola! Soy el asistente virtual de Carnicería El Asador 🥩\n\n¿En qué puedo ayudarte hoy?\n\n1️⃣ Hacer un pedido\n2️⃣ Consultar precios\n3️⃣ Información de contacto\n4️⃣ Horarios de atención");
+            estadoConversacion = 'menu_principal';
+        }
+
+        function addBotMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.innerHTML = message.replace(/\n/g, '<br>');
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addUserMessage(message);
+                input.value = '';
+                procesarMensaje(message);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function procesarMensaje(mensaje) {
+            const mensajeLower = mensaje.toLowerCase();
+            
+            switch (estadoConversacion) {
+                case 'menu_principal':
+                    if (mensajeLower.includes('1') || mensajeLower.includes('pedido')) {
+                        addBotMessage("¡Perfecto! Vamos a hacer tu pedido 🛒\n\n¿Qué te gustaría ordenar? Puedes escribir el nombre del producto o elegir una categoría:\n\n🥩 Cortes Vacunos\n🐷 Cortes Porcinos\n🐔 Aves\n🥓 Embutidos\n🍖 Preparados\n🥩 Cortes Premium");
+                        estadoConversacion = 'seleccion_producto';
+                    } else if (mensajeLower.includes('2') || mensajeLower.includes('precio')) {
+                        mostrarPrecios();
+                    } else if (mensajeLower.includes('3') || mensajeLower.includes('contacto')) {
+                        addBotMessage("📞 Teléfono: (011) 4832-5678\n📧 Email: info@elasador.com.ar\n📍 Dirección: Av. Corrientes 1234, Palermo, Buenos Aires");
+                        estadoConversacion = 'menu_principal';
+                    } else if (mensajeLower.includes('4') || mensajeLower.includes('horario')) {
+                        addBotMessage("🕒 Horarios de atención:\n\nLunes a Sábado: 8:00 - 20:00\nDomingos: 9:00 - 18:00\n\n¡Estamos abiertos todos los días!");
+                        estadoConversacion = 'menu_principal';
+                    } else {
+                        addBotMessage("Por favor, elige una opción del 1 al 4 o escribe tu consulta.");
+                    }
+                    break;
+
+                case 'seleccion_producto':
+                    const productoEncontrado = encontrarProducto(mensaje);
+                    if (productoEncontrado) {
+                        solicitarCantidad(productoEncontrado);
+                    } else {
+                        addBotMessage("No encontré ese producto. ¿Podrías escribir el nombre exacto? Por ejemplo: 'Bife de Chorizo', 'Pollo Entero', etc.");
+                    }
+                    break;
+
+                case 'solicitando_cantidad':
+                    const cantidad = parseFloat(mensaje);
+                    if (!isNaN(cantidad) && cantidad > 0) {
+                        agregarAlCarrito(productoSeleccionado, cantidad);
+                        preguntarMasProductos();
+                    } else {
+                        addBotMessage("Por favor, ingresa una cantidad válida (ej: 1, 0.5, 2.5)");
+                    }
+                    break;
+
+                case 'preguntando_mas_productos':
+                    if (mensajeLower.includes('si') || mensajeLower.includes('agregar') || mensajeLower.includes('más')) {
+                        addBotMessage("¿Qué otro producto te gustaría agregar?");
+                        estadoConversacion = 'seleccion_producto';
+                    } else if (mensajeLower.includes('no') || mensajeLower.includes('terminar') || mensajeLower.includes('finalizar')) {
+                        finalizarPedido();
+                    } else {
+                        addBotMessage("Por favor, responde 'sí' para agregar más productos o 'no' para finalizar el pedido.");
+                    }
+                    break;
+
+                case 'solicitando_datos':
+                    if (!clienteInfo.nombre) {
+                        clienteInfo.nombre = mensaje;
+                        addBotMessage("¿Cuál es tu número de teléfono?");
+                    } else if (!clienteInfo.telefono) {
+                        clienteInfo.telefono = mensaje;
+                        addBotMessage("¿Cuál es tu dirección de entrega?");
+                    } else if (!clienteInfo.direccion) {
+                        clienteInfo.direccion = mensaje;
+                        confirmarPedido();
+                    }
+                    break;
+            }
+        }
+
+        function encontrarProducto(mensaje) {
+            for (let producto in productos) {
+                if (mensaje.toLowerCase().includes(producto.toLowerCase())) {
+                    return producto;
+                }
+            }
+            return null;
+        }
+
+        let productoSeleccionado = null;
+
+        function solicitarCantidad(producto) {
+            productoSeleccionado = producto;
+            const precio = productos[producto].precio;
+            addBotMessage(`Excelente elección: ${producto} 💪\n\nPrecio: $${precio.toLocaleString()}/kg\n\n¿Cuántos kilos te gustaría? (ej: 1, 0.5, 2.5)`);
+            estadoConversacion = 'solicitando_cantidad';
+        }
+
+        function agregarAlCarrito(producto, cantidad) {
+            const precio = productos[producto].precio;
+            const subtotal = precio * cantidad;
+            
+            carrito.push({
+                producto: producto,
+                cantidad: cantidad,
+                precio: precio,
+                subtotal: subtotal
+            });
+
+            addBotMessage(`✅ Agregado al carrito:\n${producto} - ${cantidad}kg - $${subtotal.toLocaleString()}`);
+        }
+
+        function preguntarMasProductos() {
+            addBotMessage("¿Te gustaría agregar más productos a tu pedido? (sí/no)");
+            estadoConversacion = 'preguntando_mas_productos';
+        }
+
+        function finalizarPedido() {
+            if (carrito.length === 0) {
+                addBotMessage("Tu carrito está vacío. ¿Te gustaría hacer un pedido?");
+                estadoConversacion = 'seleccion_producto';
+                return;
+            }
+
+            mostrarResumenCarrito();
+            addBotMessage("Para finalizar tu pedido, necesito algunos datos:\n\n¿Cuál es tu nombre completo?");
+            estadoConversacion = 'solicitando_datos';
+        }
+
+        function mostrarResumenCarrito() {
+            let resumen = "🛒 <strong>Resumen de tu pedido:</strong>\n\n";
+            let total = 0;
+
+            carrito.forEach((item, index) => {
+                resumen += `${index + 1}. ${item.producto}\n`;
+                resumen += `   ${item.cantidad}kg x $${item.precio.toLocaleString()} = $${item.subtotal.toLocaleString()}\n\n`;
+                total += item.subtotal;
+            });
+
+            resumen += `💰 <strong>Total: $${total.toLocaleString()}</strong>`;
+            addBotMessage(resumen);
+        }
+
+        function confirmarPedido() {
+            const total = carrito.reduce((sum, item) => sum + item.subtotal, 0);
+            
+            let confirmacion = `📋 <strong>Confirmación de Pedido</strong>\n\n`;
+            confirmacion += `👤 Cliente: ${clienteInfo.nombre}\n`;
+            confirmacion += `📞 Teléfono: ${clienteInfo.telefono}\n`;
+            confirmacion += `📍 Dirección: ${clienteInfo.direccion}\n\n`;
+            confirmacion += `🛒 Total: $${total.toLocaleString()}\n\n`;
+            confirmacion += `⏰ Tiempo estimado de entrega: 2-3 horas\n\n`;
+            confirmacion += `¡Tu pedido ha sido confirmado! 🎉\n\n`;
+            confirmacion += `Te llamaremos cuando esté listo para la entrega. ¡Gracias por elegirnos!`;
+
+            addBotMessage(confirmacion);
+            
+            // Reiniciar para nuevo pedido
+            setTimeout(() => {
+                carrito = [];
+                clienteInfo = {};
+                estadoConversacion = 'inicio';
+                addBotMessage("¿Te gustaría hacer otro pedido o necesitas algo más?");
+                estadoConversacion = 'menu_principal';
+            }, 5000);
+        }
+
+        function mostrarPrecios() {
+            let precios = "💰 <strong>Precios actualizados 2025:</strong>\n\n";
+            
+            const categorias = {
+                'Vacuno': '🥩 Cortes Vacunos',
+                'Porcino': '🐷 Cortes Porcinos',
+                'Aves': '🐔 Aves',
+                'Embutidos': '🥓 Embutidos',
+                'Preparados': '🍖 Preparados',
+                'Premium': '🥩 Cortes Premium'
+            };
+
+            for (let categoria in categorias) {
+                precios += `<strong>${categorias[categoria]}</strong>\n`;
+                for (let producto in productos) {
+                    if (productos[producto].categoria === categoria) {
+                        precios += `• ${producto}: $${productos[producto].precio.toLocaleString()}/kg\n`;
+                    }
+                }
+                precios += "\n";
+            }
+
+            addBotMessage(precios);
+            estadoConversacion = 'menu_principal';
+        }
+
+        // Inicializar chat cuando se carga la página
+        window.onload = function() {
+            setTimeout(() => {
+                if (document.getElementById('chatBot').style.display === 'flex') {
+                    iniciarConversacion();
+                }
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
