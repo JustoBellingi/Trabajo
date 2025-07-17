@@ -36,7 +36,6 @@ function generarListas() {
   let items = document.querySelectorAll('#productos .item');
   let listaPrincipal = document.getElementById('listaProductos');
 
-  // Limpiamos lista principal (solo mostramos esta)
   listaPrincipal.innerHTML = '';
 
   items.forEach((item, index) => {
@@ -62,10 +61,6 @@ window.onload = () => {
     observer.observe(nodo, { characterData: true, subtree: true, childList: true });
   });
 };
-
-// --------------------------
-// MANEJO DE CARRITO
-// --------------------------
 
 let carrito = localStorage.getItem('carrito')
   ? localStorage.getItem('carrito').split(',')
@@ -116,7 +111,6 @@ function actualizarCarrito() {
 
   cantidad.textContent = carrito.length;
 
-  // Guardamos el carrito actualizado en localStorage
   localStorage.setItem('carrito', carrito.join(','));
 }
 
@@ -137,9 +131,13 @@ document.addEventListener('DOMContentLoaded', () => {
     desplegable.style.display = 'none';
   });
 
-  // 🔁 Al cargar, actualizamos el carrito visual
   actualizarCarrito();
 });
 
-// Exportamos la función para usarla en los botones del HTML
 window.agregarAlCarrito = agregarAlCarrito;
+
+function finalizarCompra() {
+  carrito = [];
+  localStorage.removeItem('carrito');
+  window.location.href = "finalizarcompra.html";
+}
